@@ -159,6 +159,14 @@ async function gallery (currentIndex, idPhotograph) {
                   this.displayItems();
             }
             
+        },
+        getNumberLikes () {
+            var likesArray = []
+            this.medias.forEach(media => {
+                likesArray.push(media.likes);
+            });
+            const sumLikes = likesArray.reduce((partialSum, a) => partialSum + a, 0);
+            return sumLikes
         }
     }
 }

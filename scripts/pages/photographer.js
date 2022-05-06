@@ -37,8 +37,24 @@ function displayData(photograph) {
     modalHeader.appendChild(h2Modal);
     h2Modal.parentNode.insertBefore(h2Modal, firstDivInForm);
 
-}
 
+    // Rate box
+
+    const rateBox = document.getElementById('rate-box');
+    const likes = document.createElement( 'p' );
+    const rate = document.createElement( 'p' );
+    likes.textContent = galleryPhotographer.getNumberLikes();
+    likes.classList.add("likes");
+    rate.textContent = photograph.price;
+    rate.classList.add("rate");
+
+    rateBox.appendChild(likes);
+    rateBox.appendChild(rate);
+
+    console.log(photograph.price)
+    console.log(galleryPhotographer.getNumberLikes())
+
+}
 // function displayMedias(gallery) {
 //     const presentationGallery = document.getElementById( 'gallery-pictures' );
     

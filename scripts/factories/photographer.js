@@ -35,5 +35,12 @@ function photographerFactory(data) {
         article.appendChild(mutedText);
         return (article);
     }
-    return { name, picture, getUserCardDOM }
+    return { 
+        name, 
+        picture, 
+        getUserCardDOM,
+        getRate (photograph) {
+            this.price;
+        }
+    }
 }
