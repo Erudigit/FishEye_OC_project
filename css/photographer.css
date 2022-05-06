@@ -87,7 +87,25 @@ main#main {
 
 /* Gallery */
 
-#gallery > p {
+#gallery .order-btn {
+    display:flex;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+#gallery .order-btn p {
+    margin-right:10px;
+}
+
+#gallery .order-btn select {
+    background-color: #901C1C;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size:16px;
+}
+
+#gallery p {
     font-weight:bold;
 }
 
