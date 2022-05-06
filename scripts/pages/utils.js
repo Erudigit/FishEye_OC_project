@@ -129,7 +129,35 @@ async function gallery (currentIndex, idPhotograph) {
             this.displayMedia();
         },
         orderItems (type_of) {
-            if type_of === "popularity"
+            const galleryItems = document.querySelectorAll('#gallery-pictures > div');
+            console.log(galleryItems)
+            if (galleryItems) {
+                galleryItems.forEach(item => {
+                    item.remove();
+                });
+            }
+            if (type_of === "popularity") {
+                this.medias.sort(function(a, b) {
+                    return parseFloat(a.likes) - parseFloat(b.likes);
+                });
+                this.displayItems();
+            } else if (type_of === "date") {
+                this.medias.sort(function(a, b) {
+                    return new Date(a.date) - new Date(b.date)
+                });
+                this.displayItems();
+            } else if (type_of === "title") {
+                this.medias.sort(function(a, b) {
+                    if ( a.title < b.title ){
+                      return -1;
+                    }
+                    if ( a.title > b.title ){
+                      return 1;
+                    }
+                    return 0;
+                  });
+                  this.displayItems();
+            }
             
         }
     }

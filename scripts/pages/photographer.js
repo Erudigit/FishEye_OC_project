@@ -152,15 +152,9 @@ prevMedia.addEventListener('click', () => {
 
 /* Order by */
 
-// var orderChosed = document.getElementById("ordering-select");
-// orderChosed.addEventListener("click", function() {
-//     var options = orderChosed.querySelectorAll("option");
-//     if (options === "popularity") {
-//     } else if (options === "date") {
-     
-//     } else (options === "title") {
-        
-//     }
-// });
+var orderChosed = document.getElementById("ordering-select");
+orderChosed.addEventListener('change', (event) => {
+    galleryPhotographer.orderItems(event.target.value)
+})
 
 // galleryPhotographer.orderItems(type_of);
