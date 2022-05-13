@@ -61,9 +61,9 @@ async function gallery (currentIndex, idPhotograph) {
                     const urlVideo = `assets/images/${media.video}`;
                     mediaFile.setAttribute("src", urlVideo)
                 }
+                mediaFile.setAttribute("alt",media.title + " - " + media.price);
                 mediaFile.addEventListener('click', () => {
                     this.currentIndex = index;
-                    console.log(this.currentIndex)
                     this.displayPopup();
                 });
         
@@ -73,9 +73,13 @@ async function gallery (currentIndex, idPhotograph) {
         
                 let divText = document.createElement( 'div' );
                 divText.classList.add("desc-img");
-                let mediaTitle = document.createElement( 'p' );
-                let mediaLikes = document.createElement( 'p' );
-        
+                let mediaTitle = document.createElement( 'h2' );
+                let mediaLikes = document.createElement( 'button' );
+
+                mediaLikes.addEventListener('click', () => {
+                    this.likeItem(media.id)
+                })
+
                 divUnder.appendChild(divText);
                 divText.appendChild(mediaTitle);
                 divText.appendChild(mediaLikes);
@@ -85,6 +89,19 @@ async function gallery (currentIndex, idPhotograph) {
                 // mediaLikes.appendChild(media.likes);
             });
         },
+        likeItem (indexItem) {
+            const mediaItem = jsonData.media.filter( media => media.id === indexItem )[0];
+            // const mediaItem = this.medias[indexItem];
+            mediaItem.likes = mediaItem.likes + 1;
+            const likeButton = document.querySelector('#gallery-pictures .div-img-' + mediaItem.id + ' button')
+            likeButton.textContent = mediaItem.likes
+            console.log(mediaItem.likes)
+
+            const likesNumber = document.querySelector('#rate-box .likes')
+            likesNumber.textContent = this.getNumberLikes();
+
+            // Doesn't save in db json
+        },
         getMedia (currentIndex) {
             return this.medias[currentIndex]
         },        
@@ -92,6 +109,80 @@ async function gallery (currentIndex, idPhotograph) {
             const popup = document.getElementById("gallery_modal");
             popup.style.display = "flex";
             this.displayMedia();
+            const nextBtn = document.getElementById('right');
+            nextBtn.addEventListener('click', () => {
+                this.nextMedia()
+            })
+            
+            const prevBtn = document.getElementById('left')
+            prevBtn.addEventListener('click', () => {
+                this.prevMedia()
+            })
+
+            const closePopup = document.getElementById('close-gallery')
+            closePopup.addEventListener('click', () => {
+                this.closeModalGallery()
+            })
+
+            const log = document.getElementById('log');
+
+            nextBtn.addEventListener('keydown', event => {
+                if (event.isComposing || event.keyCode === "ArrowRight") {
+                  this.nextMedia();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                var name = event.key;
+                var code = event.code;
+                // Alert the key name and key code on keydown
+                if (event.code === "ArrowRight") {
+                    this.nextMedia();
+                };
+              }, false);
+
+              document.addEventListener('keydown', (event) => {
+                var name = event.key;
+                var code = event.code;
+                // Alert the key name and key code on keydown
+                if (event.code === "ArrowLeft") {
+                    this.prevMedia();
+                };
+              }, false);
+
+              document.addEventListener('keydown', (event) => {
+                var name = event.key;
+                var code = event.code;
+                // Alert the key name and key code on keydown
+                if (event.code === "Escape") {
+                    this.closeModalGallery();
+                };
+              }, false);
+
+            //   document.addEventListener('keydown', (event) => {
+            //     var name = event.key;
+            //     var code = event.code;
+            //     // Alert the key name and key code on keydown
+            //     alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+
+            //   }, false);
+        },
+        closeModalGallery () {
+            const modal = document.getElementById("gallery_modal");
+            modal.style.display = "none";
+            const nextBtn = document.getElementById('right');
+            nextBtn.removeEventListener('click', () => {
+                this.nextMedia()
+            });
+            const prevBtn = document.getElementById('left');
+            prevBtn.removeEventListener('click', () => {
+                this.prevMedia()
+            });
+            const closePopup = document.getElementById('close-gallery');
+            closePopup.removeEventListener('click', () => {
+                this.closeModalGallery()
+            });
+            // the removing doesn't work
         },
         displayMedia () {
             
@@ -125,16 +216,17 @@ async function gallery (currentIndex, idPhotograph) {
         },
         prevMedia () {
             this.currentIndex = this.currentIndex - 1 < 0 ? medias.length - 1 : this.currentIndex - 1;
-            console.log(currentIndex)
+            console.log(this.currentIndex)
             this.displayMedia();
         },
         orderItems (type_of) {
-            const galleryItems = document.querySelectorAll('#gallery-pictures > div');
-            console.log(galleryItems)
-            if (galleryItems) {
-                galleryItems.forEach(item => {
-                    item.remove();
-                });
+            if (type_of !== "") {
+                const galleryItems = document.querySelectorAll('#gallery-pictures > div');
+                if (galleryItems) {
+                    galleryItems.forEach(item => {
+                        item.remove();
+                    });
+                }
             }
             if (type_of === "popularity") {
                 this.medias.sort(function(a, b) {

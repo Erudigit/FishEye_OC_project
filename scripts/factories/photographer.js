@@ -38,9 +38,6 @@ function photographerFactory(data) {
     return { 
         name, 
         picture, 
-        getUserCardDOM,
-        getRate (photograph) {
-            this.price;
-        }
+        getUserCardDOM
     }
 }

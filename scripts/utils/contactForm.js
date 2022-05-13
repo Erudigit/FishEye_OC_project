@@ -22,11 +22,4 @@ function displayModal() {
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
-}
-
-function closeModalGallery() {
-    const modal = document.getElementById("gallery_modal");
-    const media = document.querySelector('#gallery_modal .media-displayed')
-    modal.style.display = "none";
-    media.remove();
-}
+} 

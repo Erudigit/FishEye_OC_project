@@ -65,7 +65,7 @@ main#main {
     border-radius: 50%;
 }
 
-#img-photograph .tall, #img-photograph .large {
+#img-photograph .tall, #img-photograph .large, #img-photograph .square {
     object-fit: cover;
     object-position: 50% 50%;
 }
@@ -135,7 +135,7 @@ main#main {
     margin-bottom:30px;
 }
 
-#gallery .order-btn p {
+#gallery .order-btn label {
     margin-right:10px;
 }
 
@@ -147,7 +147,7 @@ main#main {
     font-size:16px;
 }
 
-#gallery p {
+#gallery p, #gallery label {
     font-weight:bold;
 }
 
@@ -178,15 +178,18 @@ main#main {
     justify-content: space-between;
 }
 
-#gallery-pictures .desc-img p {
+#gallery-pictures .desc-img h2, #gallery-pictures .desc-img button {
     margin:0;
     color:#901C1C;
     font-size:22px;
     position:relative;
     padding-right:30px;
+    border:none;
+    background-color:transparent;
+    cursor:pointer;
 }
 
-#gallery-pictures .desc-img p:last-child:after {
+#gallery-pictures .desc-img button:after {
     content: '';
     background-image: url(../assets/icons/heart-solid-red.svg);
     height: 20px;
@@ -262,6 +265,9 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size:25px;
+    padding:5px;
+    font-weight:bold;
 }
 
 form input:last-child {

@@ -8,6 +8,8 @@ function displayData(photograph) {
     const picture = `assets/photographers/${photograph.portrait}`;
     const img = document.createElement( 'img' );
     img.setAttribute("src", picture)
+    img.setAttribute("alt", photograph.name);
+
 
     const h1 = document.createElement( 'h1' );
     h1.textContent = photograph.name;
@@ -51,96 +53,7 @@ function displayData(photograph) {
     rateBox.appendChild(likes);
     rateBox.appendChild(rate);
 
-    console.log(photograph.price)
-    console.log(galleryPhotographer.getNumberLikes())
-
 }
-// function displayMedias(gallery) {
-//     const presentationGallery = document.getElementById( 'gallery-pictures' );
-    
-//     gallery.medias.forEach((media, index) => {
-//         console.log(media)
-//         console.log(index)
-//         let mediaFile
-
-//         let divUnder = document.createElement( 'div' );
-//         divUnder.classList.add("div-img-" + media.id);
-
-//         presentationGallery.appendChild(divUnder);
-//         if (media.image) {
-//             mediaFile = document.createElement( 'img' );
-//             const url_img = `assets/images/${media.image}`;
-//             mediaFile.setAttribute("src", url_img)
-//         } else {
-//             mediaFile = document.createElement( 'video' );
-//             const urlVideo = `assets/images/${media.video}`;
-//             mediaFile.setAttribute("src", urlVideo)
-//         }
-//         mediaFile.addEventListener('click', function() {
-//             gallery.displayPopup(gallery.medias.indexOf(media));
-//             gallery.currentIndex = index;
-//         });
-
-//         divUnder.appendChild(mediaFile);
-
-//         setClassBySize(mediaFile);
-
-//         let divText = document.createElement( 'div' );
-//         divText.classList.add("desc-img");
-//         let mediaTitle = document.createElement( 'p' );
-//         let mediaLikes = document.createElement( 'p' );
-
-//         divUnder.appendChild(divText);
-//         divText.appendChild(mediaTitle);
-//         divText.appendChild(mediaLikes);
-
-//         mediaTitle.textContent = media.title;
-//         mediaLikes.textContent = media.likes;
-//         // mediaLikes.appendChild(media.likes);
-//     });
-// }
-
-/* POPUP */
-
-// function displayGalleryModal(imgId) {
-
-
-//     // const myGallery = gallery(imgId, dataMedia.medias);
-//     // const btnLeft = document.getElementById('left');
-//     // const btnRight = document.getElementById('right');
-
-//     // btnLeft.addEventListener('click', function () {
-//     //     const actualMedia = document.querySelector('#gallery_modal .media-displayed');
-//     //     actualMedia.remove();
-//     //     const currentIndex = myGallery.prevMedia();
-//     //     displayGalleryModal(currentIndex);
-//     // })
-//     // btnRight.addEventListener('click', function () {
-//     //     const actualMedia = document.querySelector('#gallery_modal .media-displayed');
-//     //     actualMedia.remove();
-//     //     const currentIndex = myGallery.nextMedia();
-//     //     displayGalleryModal(currentIndex);
-//     // })
-// }
-
-// 22/04/2022
-// Create gallery on the loading of the page :
-// const myGallery = gallery(imgId, dataMedia.medias);
-
-// Create the events listener here after initialize gallery : 
-// btnLeft.addEventListener('click', function () {
-//     const actualMedia = document.querySelector('#gallery_modal .media-displayed');
-//     actualMedia.remove();
-//     const currentIndex = myGallery.prevMedia();
-//     displayGalleryModal(currentIndex);
-// })
-// btnRight.addEventListener('click', function () {
-//     const actualMedia = document.querySelector('#gallery_modal .media-displayed');
-//     actualMedia.remove();
-//     const currentIndex = myGallery.nextMedia();
-//     displayGalleryModal(currentIndex);
-// })
-
 
 const photographers = await getPhotographers();
 const idPhotograph = parseInt(getTheLink());
@@ -151,17 +64,6 @@ const galleryPhotographer = await gallery(0, idPhotograph);
 displayData(photograph);
 galleryPhotographer.displayItems();
 // displayMedias(galleryPhotographer);
-
-const nextMedia = document.getElementById('right')
-nextMedia.addEventListener('click', () => {
-    galleryPhotographer.nextMedia()
-})
-
-const prevMedia = document.getElementById('left')
-prevMedia.addEventListener('click', () => {
-    galleryPhotographer.prevMedia()
-})
-
 
 
 

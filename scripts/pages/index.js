@@ -14,7 +14,6 @@ import { getPhotographers, setClassBySize} from './utils.js';
     async function init() {
         // Retreive photographer data
         const photographers = await getPhotographers();
-        console.log(photographers);
         displayData(photographers.photographers);
     };
     
