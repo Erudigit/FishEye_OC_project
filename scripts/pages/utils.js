@@ -55,11 +55,12 @@ async function gallery (currentIndex, idPhotograph) {
                 if (media.image) {
                     mediaFile = document.createElement( 'img' );
                     const url_img = `assets/images/${media.image}`;
-                    mediaFile.setAttribute("src", url_img)
+                    mediaFile.setAttribute("src", url_img);
                 } else {
                     mediaFile = document.createElement( 'video' );
                     const urlVideo = `assets/images/${media.video}`;
-                    mediaFile.setAttribute("src", urlVideo)
+                    mediaFile.setAttribute("src", urlVideo);
+                    mediaFile.setAttribute("controls","controls");
                 }
                 mediaFile.setAttribute("alt",media.title + " - " + media.price);
                 mediaFile.addEventListener('click', () => {
@@ -202,6 +203,7 @@ async function gallery (currentIndex, idPhotograph) {
                 mediaFile = document.createElement( 'video' );
                 const urlVideo = `assets/images/${mediaShowing.video}`;
                 mediaFile.setAttribute("src", urlVideo)
+                mediaFile.setAttribute("controls","controls");
             }
             mediaFile.classList.add("media-displayed");
             mediaFile.classList.add("img-" + this.currentIndex);
