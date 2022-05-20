@@ -29,12 +29,9 @@ function closeModal() {
     console.log("close-modal")
     const modal = document.getElementById("contact_modal");
     const labels = document.querySelectorAll('.new-label');
-    console.log(labels.length)
     const inputs = document.querySelectorAll('.new-input');
-    console.log(inputs)
 
     for (let i = 0; i < labels.length; i++) {
-        console.log("fdp")
         labels[i].remove();
     }
 

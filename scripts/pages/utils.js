@@ -96,7 +96,6 @@ async function gallery (currentIndex, idPhotograph) {
             mediaItem.likes = mediaItem.likes + 1;
             const likeButton = document.querySelector('#gallery-pictures .div-img-' + mediaItem.id + ' button')
             likeButton.textContent = mediaItem.likes
-            console.log(mediaItem.likes)
 
             const likesNumber = document.querySelector('#rate-box .likes')
             likesNumber.textContent = this.getNumberLikes();
@@ -110,83 +109,46 @@ async function gallery (currentIndex, idPhotograph) {
             const popup = document.getElementById("gallery_modal");
             popup.style.display = "flex";
             this.displayMedia();
-            const nextBtn = document.getElementById('right');
-            nextBtn.addEventListener('click', () => {
-                this.nextMedia()
-            })
-            
-            const prevBtn = document.getElementById('left')
-            prevBtn.addEventListener('click', () => {
-                this.prevMedia()
-            })
-
-            const closePopup = document.getElementById('close-gallery')
-            closePopup.addEventListener('click', () => {
-                this.closeModalGallery()
-            })
-
-            const log = document.getElementById('log');
-
-            nextBtn.addEventListener('keydown', event => {
-                if (event.isComposing || event.keyCode === "ArrowRight") {
-                  this.nextMedia();
-                }
-            });
 
             document.addEventListener('keydown', (event) => {
                 var name = event.key;
                 var code = event.code;
-                // Alert the key name and key code on keydown
                 if (event.code === "ArrowRight") {
                     this.nextMedia();
                 };
               }, false);
-
-              document.addEventListener('keydown', (event) => {
+            
+            document.addEventListener('keydown', (event) => {
                 var name = event.key;
                 var code = event.code;
-                // Alert the key name and key code on keydown
                 if (event.code === "ArrowLeft") {
                     this.prevMedia();
                 };
               }, false);
-
-              document.addEventListener('keydown', (event) => {
+            
+            document.addEventListener('keydown', (event) => {
                 var name = event.key;
                 var code = event.code;
-                // Alert the key name and key code on keydown
                 if (event.code === "Escape") {
                     this.closeModalGallery();
                 };
-              }, false);
-
-            //   document.addEventListener('keydown', (event) => {
-            //     var name = event.key;
-            //     var code = event.code;
-            //     // Alert the key name and key code on keydown
-            //     alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-
-            //   }, false);
+            }, false);
         },
         closeModalGallery () {
             const modal = document.getElementById("gallery_modal");
             modal.style.display = "none";
-            const nextBtn = document.getElementById('right');
-            nextBtn.removeEventListener('click', () => {
-                this.nextMedia()
-            });
-            const prevBtn = document.getElementById('left');
-            prevBtn.removeEventListener('click', () => {
-                this.prevMedia()
-            });
-            const closePopup = document.getElementById('close-gallery');
-            closePopup.removeEventListener('click', () => {
-                this.closeModalGallery()
-            });
+            
+            // const nextBtn = document.getElementById('right');
+            // nextBtn.removeEventListener('click', this.nextMedia);
+
+            // const prevBtn = document.getElementById('left');
+            // prevBtn.removeEventListener('click', this.prevMedia );
+
+            // const closePopup = document.getElementById('close-gallery');
+            // closePopup.removeEventListener('click', this.closeModalGallery );
             // the removing doesn't work
         },
         displayMedia () {
-            
             const mediaShowing = this.getMedia(this.currentIndex); 
             const popup = document.getElementById("gallery_modal");
             const mediaDisplayed = popup.querySelector('.media-displayed');
@@ -213,12 +175,10 @@ async function gallery (currentIndex, idPhotograph) {
         },
         nextMedia () {
             this.currentIndex = this.currentIndex + 1 > medias.length - 1 ? 0 : this.currentIndex + 1;
-            console.log(this.currentIndex)
             this.displayMedia();
         },
         prevMedia () {
             this.currentIndex = this.currentIndex - 1 < 0 ? medias.length - 1 : this.currentIndex - 1;
-            console.log(this.currentIndex)
             this.displayMedia();
         },
         orderItems (type_of) {
@@ -264,5 +224,7 @@ async function gallery (currentIndex, idPhotograph) {
         }
     }
 }
+
+
  
 export {gallery, getTheLink, media, getPhotographers, setClassBySize}
