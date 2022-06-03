@@ -501,15 +501,6 @@
 			"price": 70
 		  },
 		{
-			"id": 235234343,
-			"photographerId": 930,
-			"title": "Climber",
-			"image": "Sport_Next_Hold.jpg",
-			"likes": 101,
-			"date": "2018-03-05",
-			"price": 65
-		},
-		{
 			"id": 235343222,
 			"photographerId": 930,
 			"title": "Surfer",
