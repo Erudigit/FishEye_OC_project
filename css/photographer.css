@@ -76,7 +76,7 @@ main#main {
     color: white;
     padding: 11px;
     width: 170px;
-    height: 70px;
+    height: 60px;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
@@ -168,6 +168,13 @@ main#main {
     cursor : pointer;
 }
 
+#gallery-pictures button {
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+}
+
 #gallery-pictures .large, #gallery-pictures .tall, #gallery-pictures .square {
     object-fit: cover;
     object-position: 50% 50%;
@@ -213,7 +220,7 @@ main#main {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 35px;
+    padding: 30px;
     margin: auto;
 }
 
@@ -227,7 +234,7 @@ main#main {
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 56px;
     font-weight: normal;
     text-align: center;
 }
@@ -240,7 +247,7 @@ form {
 }
 
 form h2 {
-    font-size: 64px;
+    font-size: 56px;
     font-weight: normal;
     text-align: center;
     margin:0;
@@ -249,7 +256,7 @@ form h2 {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 33px;
 }
 
 form div {
@@ -271,7 +278,7 @@ form input {
 }
 
 form input:last-child {
-    height:200px;
+    height:175px;
 }
 
 

@@ -63,19 +63,6 @@ const galleryPhotographer = await gallery(0, idPhotograph);
 
 displayData(photograph);
 galleryPhotographer.displayItems();
-// displayMedias(galleryPhotographer);
-
-/* Next / Prev Media & Close modal */
-// const nextBtn = document.getElementById('right');
-// console.log(nextBtn)
-// nextBtn.addEventListener('click', galleryPhotographer.nextMedia );
-
-// const prevBtn = document.getElementById('left');
-// console.log(prevBtn)
-// prevBtn.addEventListener('click', galleryPhotographer.prevMedia );
-
-// const closePopup = document.getElementById('close-gallery');
-// closePopup.addEventListener('click', galleryPhotographer.closeModalGallery );
 
 const closePopup = document.getElementById('close-gallery');
 closePopup.addEventListener('click', () => {

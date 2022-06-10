@@ -46,12 +46,15 @@ async function gallery (currentIndex, idPhotograph) {
         displayItems () {
             const presentationGallery = document.getElementById( 'gallery-pictures' );
             this.medias.forEach((media, index) => {
+
                 let mediaFile
-        
                 let divUnder = document.createElement( 'div' );
                 divUnder.classList.add("div-img-" + media.id);
+
+                let btnImg = document.createElement( 'button' );
         
                 presentationGallery.appendChild(divUnder);
+                divUnder.appendChild(btnImg);
                 if (media.image) {
                     mediaFile = document.createElement( 'img' );
                     const url_img = `assets/images/${media.image}`;
@@ -63,12 +66,12 @@ async function gallery (currentIndex, idPhotograph) {
                     mediaFile.setAttribute("controls","controls");
                 }
                 mediaFile.setAttribute("alt",media.title + " - " + media.price);
-                mediaFile.addEventListener('click', () => {
+                btnImg.addEventListener('click', () => {
                     this.currentIndex = index;
                     this.displayPopup();
                 });
         
-                divUnder.appendChild(mediaFile);
+                btnImg.appendChild(mediaFile);
         
                 setClassBySize(mediaFile);
         
@@ -76,6 +79,7 @@ async function gallery (currentIndex, idPhotograph) {
                 divText.classList.add("desc-img");
                 let mediaTitle = document.createElement( 'h2' );
                 let mediaLikes = document.createElement( 'button' );
+                mediaLikes.classList.add("btn-like");
 
                 mediaLikes.addEventListener('click', () => {
                     this.likeItem(media.id)
@@ -94,7 +98,7 @@ async function gallery (currentIndex, idPhotograph) {
             const mediaItem = jsonData.media.filter( media => media.id === indexItem )[0];
             // const mediaItem = this.medias[indexItem];
             mediaItem.likes = mediaItem.likes + 1;
-            const likeButton = document.querySelector('#gallery-pictures .div-img-' + mediaItem.id + ' button')
+            const likeButton = document.querySelector('#gallery-pictures .div-img-' + mediaItem.id + ' button.btn-like')
             likeButton.textContent = mediaItem.likes
 
             const likesNumber = document.querySelector('#rate-box .likes')
@@ -137,16 +141,6 @@ async function gallery (currentIndex, idPhotograph) {
         closeModalGallery () {
             const modal = document.getElementById("gallery_modal");
             modal.style.display = "none";
-            
-            // const nextBtn = document.getElementById('right');
-            // nextBtn.removeEventListener('click', this.nextMedia);
-
-            // const prevBtn = document.getElementById('left');
-            // prevBtn.removeEventListener('click', this.prevMedia );
-
-            // const closePopup = document.getElementById('close-gallery');
-            // closePopup.removeEventListener('click', this.closeModalGallery );
-            // the removing doesn't work
         },
         displayMedia () {
             const mediaShowing = this.getMedia(this.currentIndex); 

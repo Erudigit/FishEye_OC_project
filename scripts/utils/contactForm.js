@@ -7,6 +7,8 @@ function displayModal() {
     input1.classList.add('new-input');
     const input2 = document.createElement( 'input' );
     input2.classList.add('new-input');
+    input2.setAttribute('type', 'email');
+    input2.required=true;
     const input3 = document.createElement( 'input' );
     input3.classList.add('new-input');
 
@@ -23,6 +25,14 @@ function displayModal() {
     labelMessage.textContent = "Message";
 
     modalForm.append(labelLastName, input1, labelEmail, input2, labelMessage, input3);
+
+    document.addEventListener('keydown', (event) => {
+        var name = event.key;
+        var code = event.code;
+        if (event.code === "Escape") {
+            closeModal();
+        };
+    }, false);
 }
 
 function closeModal() {
@@ -40,6 +50,5 @@ function closeModal() {
     }
 
     modal.style.display = "none";
-
 
 } 
